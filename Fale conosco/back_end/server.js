@@ -49,11 +49,14 @@ server.post("/contatenos", async (req, res) => {
 
         if (resposta.affectedRows == 1) {
             return res.json({
-                "resposta": "Cadastro efetuado com sucesso!"
+                "resposta": "Cadastro efetuado com sucesso!",
+                "sucesso":true
             })
         } else {
             return res.json({
-                "resposta": "Erro ao fazer cadastro!"
+                "resposta": "Erro ao fazer cadastro!",
+                "sucesso":false
+
             })
         }
 

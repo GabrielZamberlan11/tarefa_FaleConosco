@@ -1,7 +1,11 @@
 .tamanho{
-    width: 50% !important;
+    width: 30% !important;
 }
 
 .cor{
     background-color: #607D8B !important;
+}
+
+.ocultar{
+    display: none !important;
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark" id="tema">
 
 <head>
     <meta charset="UTF-8">
@@ -10,33 +10,45 @@
     <title>Fale Conosco</title>
 </head>
 
-<body class="cor">
-    <div id="container" class="container text-light">
-        <h1 id="titulo">Fale Conosco</h1>
-        <div class="informacoes">
+<body class="">
+    <div id="container" class="container">
+
+
+        <div class="informacoes position-relative top-50 start-50 ">
+            <h1 id="titulo">Fale Conosco</h1>
 
             <label for="nome" class="mt-2">Nome Completo</label>
-            <input type="text" id="nome" class="form-control tamanho " minlength="6" placeholder="Nome Completo">
+            <input type="text" id="nome" class="form-control w-50 shadow" minlength="6" placeholder="Nome Completo">
             <br>
             <label for="email">E-mail</label>
-            <input type="email" id="email" class="form-control tamanho" minlength="6" placeholder="Insira um E-mail">
+            <input type="email" id="email" class="form-control w-50 shadow" minlength="6"
+                placeholder="Insira um E-mail">
             <br>
             <label for="telefone">Telefone(opcional)</label>
-            <input type="tel" id="telefone" class="form-control tamanho" minlength="10" placeholder="Telefone">
+            <input type="tel" id="telefone" class="form-control w-50 shadow" minlength="10" placeholder="Telefone">
             <br>
             <label for="assunto">Assunto</label>
-            <input type="text" id="assunto" class="form-control tamanho" minlength="6" placeholder="Assunto">
+            <input type="text" id="assunto" class="form-control w-50  shadow" minlength="6" placeholder="Assunto">
             <br>
             <label for="mensagem">Mensagem</label>
-            <input type="text" id="mensagem" class="form-control tamanho" minlength="10" placeholder="Mensagem">
+            <input type="text" id="mensagem" class="form-control w-50 h-50 shadow" minlength="10"
+                placeholder="Mensagem">
             <br>
             <button id="btn_confirmar" class="btn btn-success">Confirmar</button>
 
-            <p id="resposta"></p>
+            <div class="mt-4 bg-success bg-opacity-10 border border-success rounded-5 tamanho p=2 ocultar" id="resultado">
+                <p id="resposta" class="m-1"></p>
+            </div>
+
         </div>
+
+        <div class="form-check form-switch form-check-reverse">
+            <input class="form-check-input" type="checkbox" id="claro_escuro">
+            <label for="form-check-label" for="claro_escuro"></label>
+
+        </div>
+
     </div>
-
-
 
 </body>
 
@@ -66,9 +78,32 @@
 
         if (resposta.ok == true) {
             const dados = await resposta.json()
-            document.getElementById("resposta").innerText = dados.resposta
+            if (dados.resposta =="Cadastro efetuado com sucesso!") {
+                document.getElementById("resposta").innerText = dados.resposta
+                document.getElementById("resultado").classList.remove("ocultar")
+                document.getElementById("resultado").classList.add("border-success")
+                document.getElementById("resultado").classList.remove("border-danger")
+                document.getElementById("resultado").classList.add("bg-success")
+                document.getElementById("resultado").classList.remove("bg-danger")
+            } else {
+                document.getElementById("resposta").innerText = dados.resposta
+                document.getElementById("resultado").classList.remove("ocultar")
+                document.getElementById("resultado").classList.remove("border-success")
+                document.getElementById("resultado").classList.add("border-danger")
+                document.getElementById("resultado").classList.remove("bg-success")
+                document.getElementById("resultado").classList.add("bg-danger")
+            }
         } else {
-            document.getElementById("resposta").innerText = "Erro inesperado"
+            document.getElementById("resposta").innerText="Ocorreu um erro no sistema"
+        }
+
+    })
+
+    document.getElementById("claro_escuro").addEventListener("click", () => {
+        if (document.getElementById("tema").getAttribute("data-bs-theme") == "light") {
+            document.getElementById("tema").setAttribute("data-bs-theme", "dark")
+        } else {
+            document.getElementById("tema").setAttribute("data-bs-theme", "light")
         }
 
     })
