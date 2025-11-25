@@ -1,0 +1,21 @@
+.ocultar{
+    display: none !important;
+}
+
+body{
+    background-color: #344b53;
+    margin: 0;
+    padding: 0;
+}
+.bg-custom{
+    background-color: #cfd8dc;
+    border-radius: 10px;
+}
+
+.container {
+    align-content: center;
+   
+    height: 100vh;
+    width: 30vw;
+    padding: 10px;
+}

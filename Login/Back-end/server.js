@@ -51,7 +51,7 @@ server.post("/login", async (req, res) => {
             })
         } else {
             res.json({
-                "resultado": "O E-mail ou Senha estao incorretos"
+                "resposta": "O E-mail ou Senha estao incorretos"
             })
         }
     } catch (error) {
@@ -104,7 +104,7 @@ server.post("/cadastrar", async (req, res) => {
 
             if (resposta.affectedRows == 1) {
                 res.json({
-                    "resposta": "O cadastro foi realizado com sucesso"
+                    "resposta": "O Cadastro foi realizado com sucesso"
                 })
             } else {
                 res.json({

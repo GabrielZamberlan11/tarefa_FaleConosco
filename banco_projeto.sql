@@ -40,6 +40,23 @@ INSERT INTO `fale_conosco` (`id`, `nome`, `email`, `telefone`, `assunto`, `mensa
 	(2, 'Maximus', 'felipe@gmail.com', '', 'entrega regional', 'ocorreu um erro 121', '2025-11-13 19:49:35'),
 	(3, 'Gabriel Vilela Zamberlan', 'gabriel.zamberlan@portalseisisp.org.br', '', 'entrega regional', 'ocorreu um erro 121', '2025-11-13 19:50:34');
 
+-- Copiando estrutura para tabela rota_certa.login
+DROP TABLE IF EXISTS `login`;
+CREATE TABLE IF NOT EXISTS `login` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(150) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- Copiando dados para a tabela rota_certa.login: ~3 rows (aproximadamente)
+DELETE FROM `login`;
+INSERT INTO `login` (`id`, `email`, `senha`) VALUES
+	(1, 'maximus@email.com', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225'),
+	(2, 'gabriel@email.com', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225'),
+	(3, 'felipe@gmail.com', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225');
+
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;

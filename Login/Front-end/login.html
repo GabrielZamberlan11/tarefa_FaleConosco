@@ -11,31 +11,50 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1>Login</h1>
+    <div class="container-fluid container  flex">
+        <div>
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                    <div class="collapse navbar-collapse">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">    
+                                <a href="index.html" class="nav-link">cadastro</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
 
-        <label for="email">E-mail</label>
-        <input type="email" id="email" class="form-control w-50">
-        <br>
-        <label for="senha">senha</label>
-        <input type="password" id="senha" class="form-control w-50">
-
-        <button class="btn mt-4 bg-success" id="btn_cadastrar">Cadastrar</button>
-
-        <div id="resultado">
-            <p id="resposta"></p>
         </div>
-        <button id="btn_cadastro" class="btn bg-warning">Cadastro</button>
+        <div class="bg-custom text-dark" style="height: 34rem;">
+            <div class="m-5">
+                <h1 class="text-center pt-5">Login</h1>
+                <label for="email">E-mail</label>
+                <input type="email" id="email" class="form-control  mt-1" >
+                <br>
+                <label for="senha">senha</label>
+                <input type="password" id="senha" class="form-control  mt-1">
+                <div id="logar" class="text-center">
+                    <button class="btn mt-4 " id="btn_login" style="background-color: #607d8b;">Login</button>
+                    <div class="mt-4 bg-success bg-opacity-10 border border-success rounded-5 p-1 ocultar" id="resultado">
+                        <p id="resposta" class="m-1"></p>
+                    </div>
+                </div>
+            </div>
+            <button id="btn_cadastro" class="btn  m-3" style="background-color: #344b53;">Cadastro</button>
+        </div>
+
     </div>
+
 
     </div>
 </body>
 <script>
-    document.getElementById("btn_cadastrar").addEventListener("click", async () => {
+    document.getElementById("btn_login").addEventListener("click", async () => {
         const email = document.getElementById("email").value
         const senha = document.getElementById("senha").value
 
-        const resposta = await fetch('http://localhost:3000/cadastrar', {
+        const resposta = await fetch('http://localhost:3000/login', {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -48,7 +67,21 @@
         })
         if (resposta.ok == true) {
             const dados = await resposta.json()
-            document.getElementById("resposta").innerText = dados.resposta
+            if (dados.resposta == "O login foi efetuado com sucesso!") {
+                document.getElementById("resposta").innerText = dados.resposta
+                document.getElementById("resultado").classList.remove("ocultar")
+                document.getElementById("resultado").classList.add("border-success")
+                document.getElementById("resultado").classList.remove("border-danger")
+                document.getElementById("resultado").classList.add("bg-success")
+                document.getElementById("resultado").classList.remove("bg-danger")
+            } else {
+                document.getElementById("resposta").innerText = dados.resposta
+                document.getElementById("resultado").classList.remove("ocultar")
+                document.getElementById("resultado").classList.remove("border-success")
+                document.getElementById("resultado").classList.add("border-danger")
+                document.getElementById("resultado").classList.remove("bg-success")
+                document.getElementById("resultado").classList.add("bg-danger")
+            }
         } else {
             document.getElementById("resposta").innerText = "Ocorreu um erro no sistema"
         }
