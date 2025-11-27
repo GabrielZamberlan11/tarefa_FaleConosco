@@ -7,93 +7,45 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <title>cadastro</title>
+    <title>Rota-certa</title>
 </head>
 
 <body>
-    <div class=" container">
-        <div>
-            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid" style="height: 100vh; max-width: 100vw;">
+        <div class="row fixed-top ">
+            <nav class="navbar navbar-expand-lg  col-12 bg-body-tertiary">
                 <div class="container-fluid">
-                    <div class="collapse navbar-collapse">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">    
-                                <a href="login.html" class="nav-link">Login</a>
+                    <div class="collapse navbar-collapse row">
+                        <ul class="navbar-nav nav-underline me-auto mb-2 mb-lg-0 align-items-center">
+                            <li class="nav-item col-8 ms-4">
+                                <a href="index.html" class="navbar-brand  fs-4">
+                                    <img src="/Login/img/rotacerta.png" alt="" class="col-2">
+                                </a>
+                            </li>
+                            <li class="nav-item me-5">
+                                <a href="fale_conosco.html" class="nav-link  fs-4">Contate-nos</a>
+                            </li>
+                            <li class="nav-item me-5">
+                                <a href="cadastro.html" class="nav-link  fs-4">Cadastrar</a>
+                            </li>
+                            <li class="nav-item me-5">
+                                <a href="login.html" class="nav-link  fs-4">Login</a>
                             </li>
                         </ul>
                     </div>
+
                 </div>
             </nav>
-
         </div>
-        <div class="bg-custom text-dark " style="height: 34rem;">
-            <div class="m-5 ">
-                <h1 id="titulo" class="text-center pt-5">Cadastro</h1>
-                <label for="email">E-mail</label>
-                <input type="email" id="email" class="form-control pt-1">
-                <br>
-                <label for="senha">senha</label>
-                <input type="password" id="senha" class="form-control pt-1">
 
-                <div class="text-center align-items-center">
-                    <button class="btn mt-4 " id="btn_cadastrar" style="background-color: #607d8b;">Cadastrar</button>
-                    <p id="resposta"
-                        class="mt-4 bg-success bg-opacity-10 border border-success rounded-5 p-2  ocultar text-center">
-                    </p>
-                </div>
+        <div class="row flex" style="height: 100vh; width: 100vw;">
+            <div class="bg-custom align-self-center col-6 offset-1 text-dark" style="position: absolute;" >
+                <h1>Rota Certa: Logística de Ponta, Entregas Sem Falhas</h1>
             </div>
-            <button id="btn_login" class="btn m-3" style="background-color: #344b53;">Login</button>
+            <img src="/Login/img/imagem_fundo.jpg" alt="" class="img col-12 img-fundo">
+            
         </div>
-
-
     </div>
 </body>
-
-<script>
-
-    document.getElementById("btn_cadastrar").addEventListener("click", async () => {
-        const email = document.getElementById("email").value
-        const senha = document.getElementById("senha").value
-
-        const resposta = await fetch('http://localhost:3000/cadastrar', {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                "email": email,
-                "senha": senha
-            })
-        })
-        if (resposta.ok == true) {
-            const dados = await resposta.json()
-            if (dados.resposta == "O Cadastro foi realizado com sucesso") {
-                document.getElementById("resposta").innerText = dados.resposta
-                document.getElementById("resposta").classList.remove("ocultar")
-                document.getElementById("resposta").classList.add("border-success")
-                document.getElementById("resposta").classList.remove("border-danger")
-                document.getElementById("resposta").classList.add("bg-success")
-                document.getElementById("resposta").classList.remove("bg-danger")
-            } else {
-                document.getElementById("resposta").innerText = dados.resposta
-                document.getElementById("resposta").classList.remove("ocultar")
-                document.getElementById("resposta").classList.remove("border-success")
-                document.getElementById("resposta").classList.add("border-danger")
-                document.getElementById("resposta").classList.remove("bg-success")
-                document.getElementById("resposta").classList.add("bg-danger")
-            }
-        } else {
-            document.getElementById("resposta").innerText = "Ocorreu um erro no sistema"
-        }
-
-    })
-
-    document.getElementById("btn_login").addEventListener("click", async () => {
-        window.location.href = "login.html"
-    })
-
-
-</script>
 
 </html>
