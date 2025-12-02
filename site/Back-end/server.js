@@ -71,6 +71,15 @@ server.post("/cadastrar", async (req, res) => {
         email = email.trim()
         email = email.replace(" ", "")
 
+        if (email == "") {
+            return res.json({
+                "resposta": "O campo E-mail está vazio"
+            })
+        } else if (email.length < 10) {
+            return res.json({
+                "resposta": "O E-mail deve ter mais que 10 caracteres"
+            })
+        }
         if (senha == "") {
             return res.json({
                 "resposta": "O campo senha está vazio"
@@ -78,14 +87,6 @@ server.post("/cadastrar", async (req, res) => {
         } else if (senha.length < 8) {
             return res.json({
                 "resposta": "A senha deve ter mais que 8 caracteres"
-            })
-        } else if (email == "") {
-            return res.json({
-                "resposta": "O campo E-mail está vazio"
-            })
-        } else if (email.length < 10) {
-            return res.json({
-                "resposta": "O E-mail deve ter mais que 10 caracteres"
             })
         }
 
@@ -124,25 +125,25 @@ server.post("/contatenos", async (req, res) => {
 
         let { nome, email, telefone, assunto, mensagem } = req.body
 
-        nome =nome.trim()
-        email=email.trim()
-        telefone=telefone.trim()
-        assunto=assunto.trim()
-        mensagem=mensagem.trim()
+        nome = nome.trim()
+        email = email.trim()
+        telefone = telefone.trim()
+        assunto = assunto.trim()
+        mensagem = mensagem.trim()
 
-        email= email.replace(" ","")
-        telefone=telefone.replace(" ","")
-        
+        email = email.replace(" ", "")
+        telefone = telefone.replace(" ", "")
+
 
         if (nome == "" || email == "" || assunto == "" || mensagem == "") {
             return res.json({
                 "resposta": "Algum campo essêncial não está preenchido"
             })
-        }else if(nome.length < 6 || email.length < 10){
+        } else if (nome.length < 6 || email.length < 10) {
             return res.json({
                 "resposta": "Esta faltando o seu sobrenome ou o email é pequeno demais"
             })
-        }else if( telefone.length<11 & telefone !="" ){
+        } else if (telefone.length < 11 & telefone != "") {
             return res.json({
                 "resposta": "Coloque um numero de telefone válido(DDD 99999-9999)"
             })
@@ -156,12 +157,12 @@ server.post("/contatenos", async (req, res) => {
         if (resposta.affectedRows == 1) {
             return res.json({
                 "resposta": "Cadastro efetuado com sucesso!",
-                "sucesso":true
+                "sucesso": true
             })
         } else {
             return res.json({
                 "resposta": "Erro ao fazer cadastro!",
-                "sucesso":false
+                "sucesso": false
 
             })
         }
