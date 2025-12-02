@@ -41,10 +41,8 @@ server.post("/login", async (req, res) => {
             })
         }
         const hash = crypto.createHash("sha256").update(senha).digest("hex")
-
         sql = `SELECT * FROM login WHERE email=? and senha=?`
         const [resposta] = await conexao.query(sql, [email, hash])
-        console.log(resposta.length)
         if (resposta.length == 1) {
             res.json({
                 "resposta": "O login foi efetuado com sucesso!"
@@ -57,7 +55,6 @@ server.post("/login", async (req, res) => {
     } catch (error) {
         console.log(error)
     }
-
 })
 
 
@@ -92,7 +89,6 @@ server.post("/cadastrar", async (req, res) => {
 
         let sql = `SELECT * FROM login WHERE email=?`
         const [condicao] = await conexao.query(sql, [email])
-        console.log(condicao.length)
         if (condicao.length == 1) {
             return res.json({
                 "resposta": "Esse email ja esta cadastrado"
@@ -156,14 +152,11 @@ server.post("/contatenos", async (req, res) => {
 
         if (resposta.affectedRows == 1) {
             return res.json({
-                "resposta": "Cadastro efetuado com sucesso!",
-                "sucesso": true
+                "resposta": "Cadastro efetuado com sucesso!"       
             })
         } else {
             return res.json({
-                "resposta": "Erro ao fazer cadastro!",
-                "sucesso": false
-
+                "resposta": "Erro ao fazer cadastro!"
             })
         }
 
